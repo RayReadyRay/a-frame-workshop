@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <a-assets>
+        <video id="me-video" autoplay loop="true" src="/video/me.m4v" muted></video>
+        <audio id="me-audio" loop="true" src="/audio/me.m4a"></audio>
+      </a-assets>
+
+      <a-entity rotation="270 0 0" position="0 2 -45" >
+
+        <a-entity id="video-container1" sound="src: #me-audio; loop: true;" position="0 -30 0" >
+          <a-video src="#me-video" width="16" height="16" position="0 0 2" rotation="90 90 0"></a-video>
+        </a-entity>
+
+      </a-entity>
+
+      <a-entity light="type: point; castShadow: true;" position="0.051 1 0.628"></a-entity>
+
+      <a-entity camera="userHeight: 1" position="0 1 2" look-controls></a-entity>
+
+    </a-scene>
+
+    <script type="text/javascript">
+      document.querySelector('a-scene').addEventListener('loaded', function() {
+        let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if(iOS){
+          function startAudio() {
+            let entity = document.querySelector('#video-container1');
+            entity.components.sound.playSound();
+          }
+          document.body.addEventListener('click',startAudio);
+        } else {
+          let entity = document.querySelector('#video-container1');
+          entity.components.sound.playSound();
+        }
+      })
+    </script>
+
+  </body>
+</html>

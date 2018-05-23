@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <a-scene shadow antialiasing>
+
+      <a-entity id="my-box" geometry="primitive: box;" position="0 1.5 0" shadow="cast: true;"  material="color: red;"></a-entity>
+
+      <a-entity geometry="primitive: plane; width: 100; height: 100;" rotation="270 0 0" shadow="receive: true;" material="color: blue;"></a-entity>
+
+      <a-entity light="type: point; castShadow: true" position="0 6 0"></a-entity>
+
+      <a-entity light="type: ambient; intensity: .2" ></a-entity>
+      
+      <a-entity camera="userHeight: 3;" position="0 0 4" look-controls></a-entity>
+
+    </a-scene>
+
+    <script type="text/javascript">
+      document.querySelector('a-scene').addEventListener('loaded', function() {
+        let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if(iOS){
+          function startAudio() {
+            let entity = document.querySelector('#my-box');
+            entity.components.sound.playSound();
+            document.body.removeEventListener('click',startAudio);
+          }
+          document.body.addEventListener('click',startAudio);
+        } else {
+          let entity = document.querySelector('#my-box');
+          entity.components.sound.playSound();
+        }
+      })
+    </script>
+
+  </body>
+</html>
+

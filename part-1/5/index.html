@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene shadow antialiasing>
+      
+      <a-assets>
+
+        <a-asset-item id="flying-car-body-obj" src="/models/flying-car_body.obj"></a-asset-item>
+        <a-asset-item id="flying-car-body-mtl" src="/models/flying-car_body.mtl"></a-asset-item>
+        <a-asset-item id="flying-car-frame-obj" src="/models/flying-car_frame.obj"></a-asset-item>
+        <a-asset-item id="flying-car-frame-mtl" src="/models/flying-car_frame.mtl"></a-asset-item>
+
+        <a-cubemap id="sky-cubemap">
+          <img src="/images/cubemap/px.png">
+          <img src="/images/cubemap/nx.png">
+          <img src="/images/cubemap/py.png">
+          <img src="/images/cubemap/ny.png">
+          <img src="/images/cubemap/pz.png">
+          <img src="/images/cubemap/nz.png">
+        </a-cubemap>
+
+      </a-assets>
+
+      <a-entity environment="preset: osiris; skyColor: #55a6ff; horizonColor: #f0cacd; shadow: true; lightPosition: 0 13 0; fog: 0.67; groundColor: #5639ac; dressingAmount: 0; grid: none; shadowSize: 2"></a-entity>
+      
+      <a-entity id="my-car" position="0 1 0">
+      
+        <a-entity id="my-car-geometry">
+        
+        </a-entity>
+
+        <a-entity light="type:point;" position="0.051 10 0.628"></a-entity>
+        
+        <a-animation attribute="rotation" dur="10000" to="0 359.99 0" easing="linear" repeat="indefinite"></a-animation>
+        
+      </a-entity>
+
+      <a-entity light="type: ambient; intensity: .2" ></a-entity>
+      
+      <a-entity camera="userHeight: 1" position="0 1 -3" rotation="0 180 0" look-controls></a-entity>
+
+    </a-scene>
+
+  </body>
+</html>
