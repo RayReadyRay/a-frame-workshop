@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  </head>
+  
+  <body>
+    <a-scene antialias="true">
+      <a-sky color="#000"></a-sky>
+      <a-entity camera position="0 10 4" look-controls></a-entity>
+    </a-scene>
+
+    <script type="text/javascript">
+      let scene = document.querySelector( 'a-scene' );
+      let elementRadius = 3;
+
+      let containerElement = document.createElement( 'a-entity' );
+      scene.appendChild( containerElement );
+
+      function create3DObject() {
+        let element = document.createElement( 'a-entity' );
+        element.setAttribute( 'geometry', `primitive: sphere; radius: ${elementRadius};` );
+        element.setAttribute( 'material', `color:#${getRandomColor()}; metalness: 0; roughness: 0` );
+        containerElement.appendChild( element );
+      }
+
+      create3DObject();
+
+      // get random hex color
+      function getRandomColor() {
+        let letters = '0123456789abcdef';
+        let randomColor = '';
+        for (let i = 0; i < 6; i++) {
+          randomColor += letters[Math.floor(Math.random() * 16)];
+        }
+        return randomColor;
+      }
+
+    </script>
+  <body>
+</html>

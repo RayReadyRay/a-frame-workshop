@@ -7,7 +7,7 @@
     <a-scene shadow antialiasing>
       
       <a-assets>
-
+      
         <a-asset-item id="flying-car-body-obj" src="/models/flying-car_body.obj"></a-asset-item>
         <a-asset-item id="flying-car-body-mtl" src="/models/flying-car_body.mtl"></a-asset-item>
         <a-asset-item id="flying-car-frame-obj" src="/models/flying-car_frame.obj"></a-asset-item>
@@ -29,6 +29,19 @@
       <a-entity id="my-car" position="0 1 0">
       
         <a-entity id="my-car-geometry">
+
+          <a-entity obj-model="obj: #flying-car-body-obj;" 
+            material="
+              src:/images/tiger-texture.png;
+              envMap: #sky-cubemap;
+              metalness:.8;
+              roughness:0;"
+            shadow="cast:true">
+          </a-entity>
+  
+          <a-entity obj-model="obj: #flying-car-frame-obj; mtl: #flying-car-frame-mtl;" shadow="cast: true;"></a-entity>
+        
+          <a-animation attribute="position" dur="1000" to="0 .5 0" easing="ease-in-out-sine" direction="alternate" repeat="indefinite"></a-animation>
         
         </a-entity>
 
@@ -39,6 +52,7 @@
       </a-entity>
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
+      
       
       <a-entity camera="userHeight: 1" position="0 1 -3" rotation="0 180 0" look-controls></a-entity>
 

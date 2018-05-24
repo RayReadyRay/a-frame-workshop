@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+  </head>
+  
+  <body>
+    <a-scene antialias="true">
+      <a-sky color="#000"></a-sky>
+      <a-entity camera position="0 10 4" look-controls></a-entity>
+    </a-scene>
+
+    <script type="text/javascript">
+
+      // get random hex color
+      function getRandomColor() {
+        let letters = '0123456789abcdef';
+        let randomColor = '';
+        for (let i = 0; i < 6; i++) {
+          randomColor += letters[Math.floor(Math.random() * 16)];
+        }
+        return randomColor;
+      }
+
+    </script>
+  <body>
+</html>

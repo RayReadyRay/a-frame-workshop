@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  </head>
+  
+  <body>
+    <a-scene antialias="true">
+      <a-sky color="#000"></a-sky>
+      <a-entity camera position="0 10 4" look-controls></a-entity>
+    </a-scene>
+
+    <script type="text/javascript">
+      let scene = document.querySelector( 'a-scene' );
+      let objectCount = 20;
+      let elementRadius = 3;
+      let elementSpacing = .05;
+      let size = ( elementRadius * 2 ) + elementSpacing;
+      let totalSize = objectCount * size;
+
+      let containerElement = document.createElement( 'a-entity' );
+      containerElement.setAttribute( 'position', `${-.5 * totalSize} 0 ${-.5 * totalSize}` );
+      scene.appendChild( containerElement );
+
+      function create3DObject( x, z ) {
+        let element = document.createElement( 'a-entity' );
+        element.setAttribute( 'geometry', `primitive: sphere; radius: ${elementRadius};` );
+        element.setAttribute( 'material', `color:#${getRandomColor()}; metalness: 0; roughness: 0` );
+        element.setAttribute( 'position', `${x} 0 0` );
+        containerElement.appendChild( element );
+      }
+
+      function addObjects() {
+        for( let i=0; i<objectCount; i++ ) {
+          for( let j=0; j<objectCount; j++ ) {
+            create3DObject( i * size , j * size );
+          }
+        }
+      }
+
+      addObjects();
+
+      // get random hex color
+      function getRandomColor() {
+        let letters = '0123456789abcdef';
+        let randomColor = '';
+        for (let i = 0; i < 6; i++) {
+          randomColor += letters[Math.floor(Math.random() * 16)];
+        }
+        return randomColor;
+      }
+
+    </script>
+  <body>
+</html>

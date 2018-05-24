@@ -4,13 +4,11 @@
   </head>
   <body>
 
-    <a-scene>
+    <a-scene shadows>
 
       <a-assets>
 
         <img id="sky" src="/images/panorama.jpg">
-
-      </a-assets>
 
         <a-cubemap id="sky-cubemap">
           <img src="/images/cubemap/px.png">
@@ -21,26 +19,27 @@
           <img src="/images/cubemap/nz.png">
         </a-cubemap>
 
+      </a-assets>
+
       <a-sky src="#sky"></a-sky>
 
       <a-entity geometry="primitive:box;" position="0 1 0" material="color: red; metalness: .9; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;">
 
-        <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple; metalness: .5; roughness: 0; envMap: #sky-cubemap;"></a-entity>
+        <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple; metalness: .5; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
 
-        <a-entity geometry="primitive: torus;" position="-1 1 1" rotation="90 45 45" scale=".3 .3 .3" material="color: orange; metalness: 1; roughness: 0; envMap: #sky-cubemap;"></a-entity>
+        <a-entity geometry="primitive: torus;" position="-1 1 1" rotation="90 45 45" scale=".3 .3 .3" material="color: orange; metalness: 1; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
         
-
         <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
+
       </a-entity>
 
-      <a-entity geometry="primitive: plane; width: 10; height: 10;" shadow="receive: true;"  rotation="270 0 0" material="color: blue;"></a-entity>
-
+      <a-entity geometry="primitive: plane; width: 10; height: 10;" rotation="270 0 0" shadow="receive: true;" material="color: blue;"></a-entity>
 
       <a-entity light="type: point; castShadow: true" position="3 6 5"></a-entity>
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
-      
-      <a-entity camera="userHeight: 3;" position="0 5 4" look-controls></a-entity>
+
+      <a-entity camera="userHeight: 3;" position="0 0 4" look-controls wasd-controls></a-entity>
 
     </a-scene>
 

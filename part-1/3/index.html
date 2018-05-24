@@ -6,15 +6,25 @@
     <a-scene>
 
       <a-assets>
-        <video id="me-video" autoplay loop="true" src="/video/me.m4v" muted></video>
+        <video id="me-video" autoplay loop="true" src="/video/me.mp4" muted></video>
         <audio id="me-audio" loop="true" src="/audio/me.m4a"></audio>
       </a-assets>
 
       <a-entity rotation="270 0 0" position="0 2 -45" >
 
         <a-entity id="video-container1" sound="src: #me-audio; loop: true;" position="0 -30 0" >
-          <a-video src="#me-video" width="16" height="16" position="0 0 2" rotation="90 90 0"></a-video>
+          <a-video src="#me-video" width="16" height="16" position="0 0 2" rotation="90 90 90"></a-video>
         </a-entity>
+
+        <a-entity id="video-container2" sound="src: #me-audio; loop: true;" position="0 -60 0" >
+          <a-video src="#me-video" width="16" height="16" position="0 0 2" rotation="90 90 90"></a-video>
+        </a-entity>
+        
+        <a-entity id="video-container3" sound="src: #me-audio; loop: true;" position="0  -90 0" >
+          <a-video src="#me-video" width="16" height="16" position="0 0 2" rotation="90 90 90"></a-video>
+        </a-entity>
+        
+        <a-animation easing="linear" attribute="position" dur="2000" to="0 2 -75" repeat="indefinite"></a-animation>
 
       </a-entity>
 
@@ -24,16 +34,21 @@
 
     </a-scene>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
       document.querySelector('a-scene').addEventListener('loaded', function() {
         let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
           function startAudio() {
             let entity = document.querySelector('#video-container1');
             entity.components.sound.playSound();
 
+            entity = document.querySelector('#video-container2');
+            entity.components.sound.playSound();
+
+            entity = document.querySelector('#video-container3');
+            entity.components.sound.playSound();
+
             let videoEntity = document.querySelector('#me-video');
             videoEntity.play();
-
           }
           document.body.addEventListener('click',startAudio);
       })

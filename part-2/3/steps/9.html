@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script type="text/javascript">
+      AFRAME.registerComponent('my-animation', {
+        schema: {
+          speedX: { type: 'float', default: 0 },
+          totalSizeX: { type: 'float' },
+          phase: { type: 'float', default: 0 },
+          height: { type:'float' }
+        },
+        tick: function ( time, timeDelta ) {
+          let position = this.el.object3D.position;
+          position.setY( this.data.height * ( Math.sin( ( time * .001 ) + this.data.phase ) ) );
+          position.setX( position.x + ( this.data.speedX ) );
+          
+          if( position.x >= ( this.data.totalSizeX ) ) {
+            position.setX( 0 );
+          }
+        }
+      });
+    </script>
+  </head>
+  
+  <body>
+    <a-scene fog="type: linear; color: #000; near: 10; far: 15;" antialias="true">
+      <a-sky color="#000"></a-sky>
+      <a-entity camera position="0 10 4" look-controls></a-entity>
+    </a-scene>
+
+    <script type="text/javascript">
+      let scene = document.querySelector( 'a-scene' );
+      let objectCount = 80;
+      let elementRadius = .1;
+      let elementSpacing = .05;
+      let size = ( elementRadius * 2 ) + elementSpacing;
+      let totalSize = objectCount * size;
+      let speedX = .1;
+
+      let containerElement = document.createElement( 'a-entity' );
+      containerElement.setAttribute( 'position', `${-.5 * totalSize} 0 ${-.5 * totalSize}` );
+      scene.appendChild( containerElement );
+
+      function create3DObject( x, z, phase ) {
+        let element = document.createElement( 'a-entity' );
+        element.setAttribute( 'geometry', `primitive: sphere; radius: ${elementRadius};` );
+        element.setAttribute( 'material', `color:#${getRandomColor()}; metalness: 0; roughness: 0` );
+        element.setAttribute( 'position', `${x} 0 ${z}` );
+        element.setAttribute( 'my-animation', `height: 5; phase: ${phase}; totalSizeX: ${totalSize}; speedX: ${speedX}` );
+        containerElement.appendChild( element );
+      }
+
+      function addObjects() {
+        for( let i=0; i<objectCount; i++ ) {
+          for( let j=0; j<objectCount; j++ ) {
+            let phase = 2 * Math.PI * i/objectCount + 2 * Math.PI * j/objectCount; 
+            create3DObject( ( i * size ), j * size, phase );
+          }
+        }
+      }
+
+      addObjects();
+
+      // get random hex color
+      function getRandomColor() {
+        let letters = '0123456789abcdef';
+        let randomColor = '';
+        for (let i = 0; i < 6; i++) {
+          randomColor += letters[Math.floor(Math.random() * 16)];
+        }
+        return randomColor;
+      }
+
+    </script>
+  <body>
+</html>
