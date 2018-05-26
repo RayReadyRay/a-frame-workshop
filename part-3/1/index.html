@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="/js/ShaderDemo.js"></script>
+    <script type="text/javascript">
+      AFRAME.registerShader('shader-demo', {
+        schema: {
+          uTime: { type: 'float', is: 'uniform', default: 0.0 },
+          uTex: { type: 'map', is: 'uniform' }
+        },
+        vertexShader: ShaderDemo.vertexShader,
+        fragmentShader: ShaderDemo.fragmentShader
+      });
+    </script>
+
+    <script type="text/javascript">
+
+      AFRAME.registerComponent( 'my-shader', {
+
+        init: function(){
+
+
+          this.el.setAttribute( 'material', 'shader:shader-demo;' );
+
+          let video = document.querySelector( 'video' );
+
+          this.texture = new THREE.VideoTexture( video );
+          this.texture.minFilter = THREE.LinearFilter;
+          this.texture.magFilter = THREE.LinearFilter;
+          this.texture.format = THREE.RGBFormat;
+          this.texture.repeat = THREE.RepeatWrapping;
+          this.texture.wrapS = THREE.RepeatWrapping;
+          this.texture.wrapT = THREE.RepeatWrapping;
+
+          this.el.object3D.children[0].material.uniforms.uTex.value = this.texture;
+
+        },
+
+        tick: function ( time, timeDelta ) {
+
+          this.el.setAttribute('material','uTime', time );
+
+        }
+      });
+    </script>
+  </head>
+  <body>
+
+    <a-scene shadows>
+    
+      <a-sky color="#000"></a-sky>
+
+      <a-assets>
+      <video autoplay loop="true" muted></video>
+      </a-assets>
+
+      <a-entity id="my-plane" geometry="primitive:plane;" position="0 1 -6" scale="7 5 1" >
+
+      </a-entity>
+
+      <a-entity light="type: point; castShadow: true" position="3 6 5"></a-entity>
+
+      <a-entity light="type: ambient; intensity: .2" ></a-entity>
+
+      <a-entity position="0 0 4" look-controls wasd-controls></a-entity>
+
+    </a-scene>
+    
+    <script type="text/javascript">
+    
+      
+      // Prefer camera resolution nearest to 1280x720.
+      var constraints = { audio: true, video: { width: 1024, height: 1024 } }; 
+
+      var promise = navigator.mediaDevices.getUserMedia(constraints)
+      .then(function(mediaStream) {
+        var video = document.querySelector('video');
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = function(e) {
+          video.play();
+          document.querySelector('#my-plane').setAttribute('my-shader', '');
+        };
+
+      })
+      .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+
+    </script>
+
+  </body>
+</html>
+
