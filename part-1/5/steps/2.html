@@ -5,9 +5,9 @@
   </head>
   <body>
     <a-scene shadow antialiasing>
-      
+
       <a-assets>
-      
+
         <a-asset-item id="flying-car-body-obj" src="/models/flying-car_body.obj"></a-asset-item>
         <a-asset-item id="flying-car-body-mtl" src="/models/flying-car_body.mtl"></a-asset-item>
         <a-asset-item id="flying-car-frame-obj" src="/models/flying-car_frame.obj"></a-asset-item>
@@ -25,12 +25,12 @@
       </a-assets>
 
       <a-entity environment="preset: osiris; skyColor: #55a6ff; horizonColor: #f0cacd; shadow: true; lightPosition: 0 13 0; fog: 0.67; groundColor: #5639ac; dressingAmount: 0; grid: none; shadowSize: 2"></a-entity>
-      
+
       <a-entity id="my-car" position="0 1 0">
-      
+
         <a-entity id="my-car-geometry">
 
-          <a-entity obj-model="obj: #flying-car-body-obj;" 
+          <a-entity obj-model="obj: #flying-car-body-obj;"
             material="
               src:/images/tiger-texture.png;
               envMap: #sky-cubemap;
@@ -38,23 +38,22 @@
               roughness:0;"
             shadow="cast:true">
           </a-entity>
-  
+
           <a-entity obj-model="obj: #flying-car-frame-obj; mtl: #flying-car-frame-mtl;" shadow="cast: true;"></a-entity>
-        
+
           <a-animation attribute="position" dur="1000" to="0 .5 0" easing="ease-in-out-sine" direction="alternate" repeat="indefinite"></a-animation>
-        
+
         </a-entity>
 
         <a-entity light="type:point;" position="0.051 10 0.628"></a-entity>
-        
+
         <a-animation attribute="rotation" dur="10000" to="0 359.99 0" easing="linear" repeat="indefinite"></a-animation>
-        
+
       </a-entity>
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
-      
-      
-      <a-entity camera="userHeight: 1" position="0 1 -3" rotation="0 180 0" look-controls></a-entity>
+
+      <a-entity camera look-controls wasd-controls position="0 2 3"></a-entity>
 
     </a-scene>
 

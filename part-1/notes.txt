@@ -1,0 +1,13 @@
+<ctrl> + <option> + i opens inspector
+
+<ctrl> + <option> + s to take a regular screenshot
+<ctrl> + <option> + <shift> + s to capture an equirectangular panorama.
+
+A-Frame Registry - browse components
+https://aframe.io/aframe-registry/
+
+Convert equirectangular to cubemap
+https://www.360toolkit.co/convert-spherical-equirectangular-to-cubemap.html
+
+Make normal map from grayscale image
+http://cpetry.github.io/NormalMap-Online/

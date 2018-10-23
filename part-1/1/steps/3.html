@@ -7,17 +7,15 @@
     <a-scene>
 
       <a-entity geometry="primitive:box;" position="0 1 0" material="color: red;">
-        
+
         <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
 
       </a-entity>
 
       <a-entity geometry="primitive: plane; width: 10; height: 10;" rotation="270 0 0" material="color: blue;"></a-entity>
-      
-      <a-entity camera="userHeight: 3;" position="0 0 4" look-controls></a-entity>
 
+            <a-entity camera look-controls wasd-controls position="0 1 5"></a-entity>
     </a-scene>
 
   </body>
 </html>
-

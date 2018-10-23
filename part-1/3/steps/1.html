@@ -27,15 +27,19 @@
     <script type="text/javascript">
       document.querySelector('a-scene').addEventListener('loaded', function() {
         let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if(iOS){
           function startAudio() {
             let entity = document.querySelector('#video-container1');
             entity.components.sound.playSound();
-
-            let videoEntity = document.querySelector('#me-video');
-            videoEntity.play();
-
           }
           document.body.addEventListener('click',startAudio);
+        } else {
+          let entity = document.querySelector('#video-container1');
+          entity.components.sound.playSound();
+
+          let video = document.querySelector('#me-video');
+          video.play();
+        }
       })
     </script>
 

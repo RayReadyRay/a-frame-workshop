@@ -11,7 +11,7 @@
         <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple;"></a-entity>
 
         <a-entity geometry="primitive: torus;" position="-1 1 1" rotation="90 45 45" scale=".3 .3 .3" material="color: orange;"></a-entity>
-        
+
         <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
 
       </a-entity>
@@ -22,10 +22,9 @@
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
 
-      <a-entity camera="userHeight: 3;" position="0 0 4" look-controls></a-entity>
+      <a-entity camera look-controls wasd-controls position="0 1 5"></a-entity>
 
     </a-scene>
 
   </body>
 </html>
-
