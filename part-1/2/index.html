@@ -12,7 +12,11 @@
 
       </a-assets>
 
-      <a-entity id="my-box" sound="src:#sample-audio;loop:true;" geometry="primitive: box;" position="0 1.5 0" rotation="0 45 0" shadow="cast: true;"  material="color: red;"></a-entity>
+      <a-entity id="my-box" sound="src:#sample-audio; loop: true;" geometry="primitive: box;" position="-40 1.5 0" rotation="0 45 0" shadow="cast: true;"  material="color: red;">
+
+        <a-animation attribute="position" dur="5000" to="40 1.5 0" direction="alternate" repeat="indefinite"></a-animation>
+
+      </a-entity>
 
       <a-entity geometry="primitive: plane; width: 100; height: 100;" rotation="270 0 0" shadow="receive: true;" material="color: blue;"></a-entity>
 
@@ -20,7 +24,7 @@
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
 
-      <a-entity camera look-controls wasd-controls position="0 1 5"></a-entity>
+      <a-entity camera look-controls position="0 1 5"></a-entity>
 
     </a-scene>
 
