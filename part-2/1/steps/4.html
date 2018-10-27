@@ -8,11 +8,12 @@
           this.material = this.el.getOrCreateObject3D('mesh').material;
         },
         schema: {
-          cyclespeed: {type: 'float', default: .001}
+          cycleRate: {type: 'float', default: .001},
+          hueOffset: {type: 'float', default: 0}
         },
         tick: function() {
-          this.hue += this.data.cyclespeed;
-          this.material.color.setHSL ( this.hue % 1, 1, .5 );
+          this.hue += this.data.cycleRate;
+          this.material.color.setHSL ( ( this.hue + this.data.hueOffset ) % 1, 1, .5 );
         }
       });
     </script>
@@ -38,21 +39,21 @@
 
       <a-sky src="#sky"></a-sky>
 
-      <a-entity geometry="primitive:box;" position="0 1 0" material="color: red; metalness: .9; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;" rainbow="cyclespeed:0.001;" >
+      <a-entity geometry="primitive:box;" position="0 1 0" material="color: red; metalness: .9; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;" rainbow >
 
-        <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple; metalness: .5; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
+        <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple; metalness: .5; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;" rainbow="hueOffset:0.1;"></a-entity>
 
         <a-entity geometry="primitive: torus;" position="-1 1 1" rotation="90 45 45" scale=".3 .3 .3" material="color: orange; metalness: 1; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
-        
+
         <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
 
         <a-animation attribute="scale" begin="mouseenter" dur="300" to="2.3 2.3 2.3" easing="ease-in-out"></a-animation>
 
         <a-animation attribute="scale" begin="mouseleave" dur="300" to="1 1 1" easing="ease-in-out"></a-animation>
 
-        <a-animation attribute="rainbow.cyclespeed" begin="mouseenter" dur="300" to=".1" easing="ease-in-out"></a-animation>
+        <a-animation attribute="rainbow.cycleRate" begin="mouseenter" dur="300" to=".1" easing="ease-in-out"></a-animation>
 
-        <a-animation attribute="rainbow.cyclespeed" begin="mouseleave" dur="300" to=".001" easing="ease-in-out"></a-animation>
+        <a-animation attribute="rainbow.cycleRate" begin="mouseleave" dur="300" to=".001" easing="ease-in-out"></a-animation>
 
       </a-entity>
 
@@ -70,4 +71,3 @@
 
   </body>
 </html>
-

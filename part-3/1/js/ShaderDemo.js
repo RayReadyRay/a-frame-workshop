@@ -12,7 +12,7 @@ ShaderDemo = {
     "uniform float uTime;",
 
     "// Simplex 2D noise",
-    
+
     // "vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }",
 
     // "float snoise(vec2 v){",
@@ -48,7 +48,7 @@ ShaderDemo = {
       "vec3 p = position;",
 
       "float offsetZ = 0.0;",
-      
+
       // "offsetZ += snoise(vec2(vUv.x * 10.0, (vUv.y * 10.0) + (uTime * 0.001)));",
 
       // "offsetZ *= 0.5;",
@@ -79,7 +79,7 @@ ShaderDemo = {
 
       // "offsetX = abs( offsetX - 1.0 );",
       // "offsetY = abs( offsetY - 1.0 );",
-
+      //
       // "offsetX = cos( ( uTime * 0.001 ) + vUv.y ) + offsetX;",
       // "offsetY = sin( ( uTime * 0.001 ) + vUv.x ) + offsetY;",
 

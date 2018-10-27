@@ -28,8 +28,13 @@
         <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple; metalness: .5; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
 
         <a-entity geometry="primitive: torus;" position="-1 1 1" rotation="90 45 45" scale=".3 .3 .3" material="color: orange; metalness: 1; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
-        
+
         <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
+
+
+        <a-animation attribute="scale" begin="mouseenter" dur="300" to="2 2 2"></a-animation>
+
+        <a-animation attribute="scale" begin="mouseleave" dur="300" to="1 1 1"></a-animation>
 
       </a-entity>
 
@@ -39,10 +44,11 @@
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
 
-      <a-entity camera="userHeight: 3;" position="0 0 4" look-controls wasd-controls></a-entity>
+      <a-entity camera position="0 2 4" look-controls wasd-controls>
+        <a-cursor></a-cursor>
+      </a-entity>
 
     </a-scene>
 
   </body>
 </html>
-
