@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
      <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
   </head>
   <body>
@@ -26,28 +26,23 @@
 
       <a-entity environment="preset: osiris; skyColor: #55a6ff; horizonColor: #f0cacd; shadow: true; lightPosition: 0 13 0; fog: 0.67; groundColor: #5639ac; dressingAmount: 0; grid: none; shadowSize: 2"></a-entity>
 
-      <a-entity id="my-car" position="0 1 0">
+      <a-entity id="my-car" position="0 1 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear;">
 
-        <a-entity id="my-car-geometry">
+        <a-entity id="my-car-geometry" animation="property: position; to: 0 .5 0; loop: true; dur: 1000; dir: alternate; easing: easeInOutSine;">
 
           <a-entity obj-model="obj: #flying-car-body-obj;"
-            material="
-              src:/images/tiger-texture.png;
-              envMap: #sky-cubemap;
-              metalness:.8;
-              roughness:0;"
+            material="src:/images/tiger-texture.png;
+            envMap: #sky-cubemap;
+            metalness:.8;
+            roughness:0;"
             shadow="cast:true">
           </a-entity>
 
           <a-entity obj-model="obj: #flying-car-frame-obj; mtl: #flying-car-frame-mtl;" shadow="cast: true;"></a-entity>
 
-          <a-animation attribute="position" dur="1000" to="0 .5 0" easing="ease-in-out-sine" direction="alternate" repeat="indefinite"></a-animation>
-
         </a-entity>
 
         <a-entity light="type:point;" position="0.051 10 0.628"></a-entity>
-
-        <a-animation attribute="rotation" dur="10000" to="0 359.99 0" easing="linear" repeat="indefinite"></a-animation>
 
       </a-entity>
 

@@ -1,16 +1,12 @@
 <html>
   <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
   </head>
   <body>
 
     <a-scene>
 
-      <a-entity geometry="primitive:box;" position="0 1 0" material="color: red;">
-
-        <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
-
-      </a-entity>
+      <a-entity geometry="primitive:box;" position="0 1 0" material="color: red;" animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear;"></a-entity>
 
       <a-entity geometry="primitive: plane; width: 10; height: 10;" rotation="270 0 0" material="color: blue;"></a-entity>
 
