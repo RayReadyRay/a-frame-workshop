@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
   </head>
   <body>
 
@@ -23,18 +23,14 @@
 
       <a-sky src="#sky"></a-sky>
 
-      <a-entity geometry="primitive:box;" position="0 1 0" material="color: red; metalness: .9; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;">
+      <a-entity geometry="primitive:box;" position="0 1 0" material="color: red; metalness: .9; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear;"
+        animation__mouseenter="property: scale; to: 2 2 2; loop: true; dur: 300; startEvents: mouseenter;"
+        animation__mouseleave="property: scale; to: 1 1 1; loop: true; dur: 300; startEvents: mouseleave;">
 
         <a-entity geometry="primitive: cylinder;" position="1 1 1" rotation="45 45 45" scale=".3 .3 .3" material="color: purple; metalness: .5; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
 
         <a-entity geometry="primitive: torus;" position="-1 1 1" rotation="90 45 45" scale=".3 .3 .3" material="color: orange; metalness: 1; roughness: 0; envMap: #sky-cubemap;" shadow="cast: true;"></a-entity>
-
-        <a-animation attribute="rotation" dur="4000" to="0 359.999 0" repeat="indefinite" easing="linear"></a-animation>
-
-
-        <a-animation attribute="scale" begin="mouseenter" dur="300" to="2 2 2"></a-animation>
-
-        <a-animation attribute="scale" begin="mouseleave" dur="300" to="1 1 1"></a-animation>
 
       </a-entity>
 
