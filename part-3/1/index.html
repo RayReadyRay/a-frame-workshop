@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="/js/aframe.min.js"></script>
     <script src="js/ShaderDemo.js"></script>
     <script type="text/javascript">
       AFRAME.registerShader('shader-demo', {
@@ -19,12 +19,11 @@
 
         init: function(){
 
-
           this.el.setAttribute( 'material', 'shader:shader-demo;' );
 
           let video = document.querySelector( 'video' );
 
-          this.texture = new THREE.VideoTexture( video );
+          this.texture = new THREE.TextureLoader().load('images/flowers.png');
           this.texture.minFilter = THREE.LinearFilter;
           this.texture.magFilter = THREE.LinearFilter;
           this.texture.format = THREE.RGBFormat;
@@ -50,11 +49,7 @@
 
       <a-sky color="#000"></a-sky>
 
-      <a-assets>
-      <video autoplay loop="true" muted></video>
-      </a-assets>
-
-      <a-entity id="my-plane" geometry="primitive:plane; segmentsHeight:1000; segmentswidth:1000;" position="0 1 -6" scale="7 5 1" >
+      <a-entity id="my-plane" geometry="primitive:plane; segmentsHeight:1000; segmentswidth:1000;" position="0 1 -6" scale="5 5 1" my-shader >
 
       </a-entity>
 
@@ -66,25 +61,6 @@
 
     </a-scene>
 
-    <script type="text/javascript">
-
-
-      // Prefer camera resolution nearest to 1280x720.
-      var constraints = { audio: true, video: { width: 1024, height: 1024 } };
-
-      var promise = navigator.mediaDevices.getUserMedia(constraints)
-      .then(function(mediaStream) {
-        var video = document.querySelector('video');
-        video.srcObject = mediaStream;
-        video.onloadedmetadata = function(e) {
-          video.play();
-          document.querySelector('#my-plane').setAttribute('my-shader', '');
-        };
-
-      })
-      .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
-
-    </script>
-
   </body>
+
 </html>

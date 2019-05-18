@@ -32,13 +32,15 @@
           this.texture.wrapS = THREE.RepeatWrapping;
           this.texture.wrapT = THREE.RepeatWrapping;
 
-          this.el.object3D.children[0].material.uniforms.uTex.value = this.texture;
+          this.mesh = this.el.object3D.children[0];
+
+          this.mesh.material.uniforms.uTex.value = this.texture;
 
         },
 
         tick: function ( time, timeDelta ) {
 
-          this.el.setAttribute('material','uTime', time );
+          this.mesh.material.uniforms.uTime.value = time;
 
         }
       });
@@ -54,7 +56,7 @@
       <video autoplay loop="true" muted></video>
       </a-assets>
 
-      <a-entity id="my-plane" geometry="primitive:plane; segmentsHeight:1000; segmentswidth:1000;" position="0 1 -6" scale="7 5 1" >
+      <a-entity id="mesh" geometry="primitive:plane; segmentsHeight:1000; segmentswidth:1000;" position="0 1 -6" scale="7 5 1" >
 
       </a-entity>
 
@@ -62,7 +64,7 @@
 
       <a-entity light="type: ambient; intensity: .2" ></a-entity>
 
-      <a-entity position="0 0 4" look-controls wasd-controls></a-entity>
+      <a-entity position="0 0 7" look-controls wasd-controls></a-entity>
 
     </a-scene>
 
@@ -78,7 +80,7 @@
         video.srcObject = mediaStream;
         video.onloadedmetadata = function(e) {
           video.play();
-          document.querySelector('#my-plane').setAttribute('my-shader', '');
+          document.querySelector('#mesh').setAttribute('my-shader', '');
         };
 
       })

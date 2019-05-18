@@ -32,18 +32,39 @@
       let scene = document.querySelector( 'a-scene' );
       let objectCount = 20;
       let elementRadius = 3;
-      let elementSpacing = .05;
+      let elementSpacing = 6;
+
       let size = ( elementRadius * 2 ) + elementSpacing;
       let totalSize = objectCount * size;
       let speedX = .1;
 
       let containerElement = document.createElement( 'a-entity' );
-      containerElement.setAttribute( 'position', `${-.5 * totalSize} 0 ${-.5 * totalSize}` );
+      containerElement.setAttribute( 'position', `${-.5 * totalSize} -3 ${-.5 * totalSize}` );
       scene.appendChild( containerElement );
 
       function create3DObject( x, z, phase ) {
+
+        let objectIndex = Math.floor(Math.random() * 10);
+        let shape = '';
+
+
+        switch (objectIndex) {
+          case 0:
+            shape = 'box';
+            break;
+          case 1:
+            shape = 'icosahedron';
+            break;
+          case 2:
+            shape = 'torus';
+            break;
+          default:
+            shape = "cone"
+            break;
+        }
+
         let element = document.createElement( 'a-entity' );
-        element.setAttribute( 'geometry', `primitive: sphere; radius: ${elementRadius};` );
+        element.setAttribute( 'geometry', `primitive: ${shape}; radius: ${elementRadius};` );
         element.setAttribute( 'material', `color:#${getRandomColor()}; metalness: 0; roughness: 0` );
         element.setAttribute( 'position', `${x} 0 ${z}` );
         element.setAttribute( 'my-animation', `height: 5; phase: ${phase}; totalSizeX: ${totalSize}; speedX: ${speedX}` );

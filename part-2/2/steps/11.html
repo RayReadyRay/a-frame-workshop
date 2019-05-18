@@ -23,7 +23,9 @@
         },
         tick: function ( time, timeDelta ) {
           let position = this.el.object3D.position;
-          position.setY( this.data.height * ( Math.sin( ( time * .001  ) + this.data.phase ) ) );
+          let scale = ( Math.sin( ( time * .001  ) + this.data.phase ) )
+          this.el.object3D.scale.set( scale, scale, scale);
+          // position.setY( this.data.height  );
           position.setX( position.x + ( this.data.speedX * ( timeDelta / 60 ) ) );
 
           if( position.x >= ( this.data.totalSizeX ) ) {
@@ -35,7 +37,7 @@
   </head>
 
   <body>
-    <a-scene fog="type: linear; color: #000; near: 10; far: 15;" antialias="true">
+    <a-scene fog="type: linear; color: #ffffff; near: 10; far: 15;" antialias="true">
       <a-sky color="#000"></a-sky>
       <a-entity camera position="0 10 4" look-controls wasd-controls>
         <a-cursor></a-cursor>
@@ -46,7 +48,7 @@
       let scene = document.querySelector( 'a-scene' );
       let objectCount = 20;
       let elementRadius = 1;
-      let elementSpacing = .05;
+      let elementSpacing = 2;
       let size = ( elementRadius * 2 ) + elementSpacing;
       let totalSize = objectCount * size;
       let speedX = .3;

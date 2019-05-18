@@ -3,13 +3,13 @@
     <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
     <script type="text/javascript">
       AFRAME.registerComponent('rainbow', {
-        init: function () {
-          this.hue = 0;
-          this.material = this.el.getOrCreateObject3D('mesh').material;
-        },
         schema: {
           cycleRate: {type: 'float', default: .001},
           hueOffset: {type: 'float', default: 0}
+        },
+        init: function () {
+          this.hue = 0;
+          this.material = this.el.getOrCreateObject3D('mesh').material;
         },
         tick: function() {
           this.hue += this.data.cycleRate;
